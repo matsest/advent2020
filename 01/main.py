@@ -26,7 +26,6 @@ def number_two():
 
     return ans
 
-
-print(number_one())
-print(number_two())
+print('Ans 1: ', number_one())
+print('Ans 2: ', number_two())
 

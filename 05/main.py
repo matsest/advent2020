@@ -33,7 +33,7 @@ def calc_seat_id(boarding_pass: str) -> int:
 
     #print(boarding_pass, row, seat)
 
-    return row * 8 + seat
+    return int(row) * 8 + int(seat)
 
 def number_one() -> int:
     '''Find highest seat ID on all boarding passes'''
