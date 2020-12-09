@@ -8,14 +8,16 @@ def parse_input(inputfile: str):
     with open(inputfile, 'r') as input_file:
         lines = [int(line.rstrip("\n")) for line in input_file.readlines()]
 
-    return lines 
+    return lines
 
 def number_one() -> int:
-    '''What is the first number that is not a combo of two numbers in the previous preamble-length numbers?'''
+    '''What is the first number that is not a combo of two numbers in the
+    previous preamble-length numbers?'''
     nums = parse_input('input.txt')
     preamble = 25
+    ans = 0
 
-    for i in range(preamble,len(nums)):
+    for i in range(preamble, len(nums)):
         prev_nums = nums[i-preamble:i]
         possible_pairs = list(itertools.combinations(prev_nums, 2))
         found = False
@@ -23,17 +25,20 @@ def number_one() -> int:
         for pair in possible_pairs:
             if pair[0] + pair[1] == nums[i]:
                 found = True
-        if not found: 
-                break # we found the number
+        if not found:
+            ans = nums[i]
+            break # we found the number
 
-    return nums[i]
+    return ans
 
 def number_two():
+    '''Find a continuous range that sums up to the answer from number one
+    and return the sum of the largest and smallest number in the range'''
     target = number_one()
     nums = parse_input('input.txt')
 
     smallest, largest = 0, 0
-    for i in range(len(nums)):
+    for i, _ in enumerate(nums):
         smallest, largest = nums[i], nums[i]
         cont_set = [nums[i]]
         for j in range(i+1, len(nums)):
@@ -49,4 +54,3 @@ def number_two():
 
 print('Ans 1: ', number_one())
 print('Ans 2: ', number_two())
-
